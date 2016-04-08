@@ -18,17 +18,18 @@ package com.zpl.web;
 
 import com.zpl.model.GenerateRequest;
 import com.zpl.model.ReviewDTO;
-import com.zpl.service.ReviewGenerator;
+import com.zpl.service.ReviewService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Date;
-import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -36,7 +37,7 @@ import java.util.Map;
 public class MainController {
 
     @Autowired
-    private ReviewGenerator generator;
+    private ReviewService reviewService;
 
     @RequestMapping("/foo")
     public String helloWorld() {
@@ -50,22 +51,17 @@ public class MainController {
         return "welcome";
     }
 
-    @RequestMapping("/resource")
-    public ReviewDTO home() {
-        ReviewDTO dto = new ReviewDTO();
-        Map<String, Object> model = new HashMap<String, Object>();
-        dto.setId(1);
-        //dto.setReviewText(generator.generateReviewText(20, 50));
-//        model.put("id", UUID.randomUUID().toString());
-//        model.put("content", "Hello World");
-        return dto;
-    }
 
     @RequestMapping(value = "/generate", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
     public void generateReviews(@RequestBody final GenerateRequest request) {
-        generator.generateReviews(request.getCustomerId(), request.getCount());
+        reviewService.generateReviews(request.getCustomerId(), request.getCount());
         // "Generated " + request.getCount() + " reviews for customer " + request.getCustomerId();
+    }
+
+    @RequestMapping(value = "/load", method = RequestMethod.GET, params = {"customer_id"})
+    public List<ReviewDTO> loadReviews(@RequestParam(value = "customer_id") final Integer customerId) {
+        return reviewService.loadReviews(customerId);
     }
 
 }
