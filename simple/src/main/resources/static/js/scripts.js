@@ -1,12 +1,12 @@
 angular.module('app', [])
     .controller('main', function ($scope, $http, $timeout) {
-        $scope.customerId = 1;
+        $scope.customerId = 5;
         $scope.reviewCount = 5000;
         $scope.showLoadResults = false;
 
         $scope.generate = function () {
 
-            $scope.generateStatus = 'Working...'
+            $scope.generateStatus = 'Working...';
 
             var request = $http({
                 method: 'POST',
@@ -19,13 +19,13 @@ angular.module('app', [])
 
             request.success(function () {
                 $scope.generateStatus = "Ok ";
-            })
-        }
+            });
+        };
 
         $scope.load = function () {
             $scope.startTime = new Date().getTime();
             $scope.loadTime = 0;
-            $scope.loadStatus = "Loading..."
+            $scope.loadStatus = "Loading...";
             $scope.reviews = null;
             $scope.showLoadResults = false;
 
@@ -41,6 +41,6 @@ angular.module('app', [])
                 $scope.loadTime = endTime - $scope.startTime;
                 $scope.loadStatus = "Ok";
                 $scope.showLoadResults = true;
-            })
-        }
-    })
+            });
+        };
+    });

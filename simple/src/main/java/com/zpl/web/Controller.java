@@ -27,7 +27,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/rest")
-public class MainController {
+public class Controller {
 
     @Autowired
     private ReviewService reviewService;

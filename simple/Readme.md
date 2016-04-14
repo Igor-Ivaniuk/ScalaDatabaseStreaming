@@ -8,8 +8,7 @@ http://g00glen00b.be/prototyping-spring-boot-angularjs/
 
 npm init
 npm install -g bower
-bower init
-bower install --save jquery
-bower install --save bootstrap
-bower install --save angular
-or
+bower install 
+
+
+npm install -g gulp gulp-usemin gulp-uglify gulp-minify-css

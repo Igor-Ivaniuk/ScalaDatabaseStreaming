@@ -3,9 +3,24 @@
   "version": "1.0.0",
   "description": "Simple database streaming project",
   "main": "static/index.html",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Vivisector/ScalaDatabaseStreaming"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Igor Ivaniuk",
-  "license": "Apache-2.0"
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "bower": "^1.7.9",
+    "grunt": "^1.0.1",
+    "grunt-contrib-cssmin": "latest",
+    "grunt-contrib-jshint": "latest",
+    "grunt-contrib-less": "latest",
+    "grunt-contrib-uglify": "latest",
+    "grunt-contrib-watch": "latest",
+    "grunt-serve": "^0.1.6",
+    "jshint-stylish": "latest"
+  }
 }
