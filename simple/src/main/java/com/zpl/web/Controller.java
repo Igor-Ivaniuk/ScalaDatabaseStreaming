@@ -17,6 +17,7 @@
 package com.zpl.web;
 
 import com.zpl.model.GenerateRequest;
+import com.zpl.model.GenerateResponse;
 import com.zpl.model.ReviewDTO;
 import com.zpl.service.ReviewService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,13 +35,15 @@ public class Controller {
 
     @RequestMapping(value = "/generate", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
-    public void generateReviews(@RequestBody final GenerateRequest request) {
-        reviewService.generateReviews(request.getCustomerId(), request.getCount());
-        // "Generated " + request.getCount() + " reviews for customer " + request.getCustomerId();
+    @ResponseBody
+    public GenerateResponse generateReviews(@RequestBody final GenerateRequest request) {
+        return reviewService.generateReviews(request.getCustCount(),
+                request.getReviewCountMin(),
+                request.getReviewCountMax());
     }
 
-    @RequestMapping(value = "/load", method = RequestMethod.GET, params = {"customer_id"})
-    public List<ReviewDTO> loadReviews(@RequestParam(value = "customer_id") final Integer customerId) {
+    @RequestMapping(value = "/load", method = RequestMethod.GET, params = {"customerId"})
+    public List<ReviewDTO> loadReviews(@RequestParam(value = "customerId") final Integer customerId) {
         return reviewService.loadReviews(customerId);
     }
 

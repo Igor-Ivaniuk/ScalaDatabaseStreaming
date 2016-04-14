@@ -1,5 +1,6 @@
 package com.zpl.service;
 
+import com.zpl.model.GenerateResponse;
 import com.zpl.model.ReviewDTO;
 import org.springframework.stereotype.Service;
 
@@ -11,7 +12,7 @@ import java.util.List;
 @Service
 public interface ReviewService {
 
-    void generateReviews(int customerId, int count);
+    GenerateResponse generateReviews(int customerCount, int reviewCountMin, int reviewCountMax);
 
     List<ReviewDTO> loadReviews(int customerId);
 }

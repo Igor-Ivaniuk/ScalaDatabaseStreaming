@@ -8,7 +8,8 @@ import lombok.Data;
 @Data
 public class GenerateRequest {
 
-    private Integer customerId;
-    private Integer count;
+    private Integer custCount;
+    private Integer reviewCountMin;
+    private Integer reviewCountMax;
 
 }

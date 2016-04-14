@@ -1,24 +1,30 @@
 angular.module('app', [])
     .controller('main', function ($scope, $http, $timeout) {
-        $scope.customerId = 5;
-        $scope.reviewCount = 5000;
+        $scope.custCount = 5;
+        $scope.reviewCountMin = 5000;
+        $scope.reviewCountMax = 10000;
         $scope.showLoadResults = false;
+        $scope.customerIds = [];
 
         $scope.generate = function () {
 
             $scope.generateStatus = 'Working...';
+            $scope.customerIds = [];
 
             var request = $http({
                 method: 'POST',
                 url: '/rest/generate',
                 data: {
-                    customerId: $scope.customerId,
-                    count: $scope.reviewCount
+                    custCount: $scope.custCount,
+                    reviewCountMin: $scope.reviewCountMin,
+                    reviewCountMax: $scope.reviewCountMax
                 }
             });
 
-            request.success(function () {
-                $scope.generateStatus = "Ok ";
+            request.success(function (response) {
+                $scope.generateCount = response.totalCount;
+                $scope.generateStatus = "Ok. Generated " + $scope.generateCount + " reviews.";
+                $scope.customerIds = response.customerIds;
             });
         };
 
@@ -32,7 +38,7 @@ angular.module('app', [])
             var request = $http({
                 method: 'GET',
                 url: '/rest/load',
-                params: {customer_id: $scope.customerId}
+                params: {customerIds: $scope.customerIds}
             });
 
             request.then(function (response) {

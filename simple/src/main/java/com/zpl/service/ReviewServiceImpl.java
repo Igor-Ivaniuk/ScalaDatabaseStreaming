@@ -1,11 +1,11 @@
 package com.zpl.service;
 
 import com.zpl.entity.Review;
+import com.zpl.model.GenerateResponse;
 import com.zpl.model.ReviewDTO;
 import com.zpl.repository.ReviewRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -27,13 +27,22 @@ public class ReviewServiceImpl implements ReviewService {
 
 
     @Override
-    public void generateReviews(int customerId, int count) {
-        List<Review> reviewList = new ArrayList<Review>();
-        for (int i = 0; i < count; i++) {
-            Review review = generateReview(customerId);
-            reviewList.add(review);
+    public GenerateResponse generateReviews(int customerCount, int reviewCountMin, int reviewCountMax) {
+        reviewRepository.deleteAll();
+        List<Integer> customerIds = new ArrayList<Integer>();
+        Integer totalCount = 0;
+        for (int customerId = 1; customerId <= customerCount; customerId++) {
+            List<Review> reviewList = new ArrayList<Review>();
+            int reviewCount = reviewCountMin + (int) (Math.random() * ((reviewCountMax - reviewCountMin) + 1));
+            for (int j = 0; j < reviewCount; j++) {
+                Review review = generateReview(customerId);
+                reviewList.add(review);
+            }
+            reviewRepository.save(reviewList);
+            totalCount += reviewCount;
+            customerIds.add(customerId);
         }
-        reviewRepository.save(reviewList);
+        return GenerateResponse.builder().totalCount(totalCount).customerIds(customerIds).build();
     }
 
     @Override
