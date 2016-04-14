@@ -1,0 +1,25 @@
+{
+  "name": "simple",
+  "description": "Simple database streaming project",
+  "main": "static/index.html",
+  "authors": [
+    "Igor Ivaniuk"
+  ],
+  "license": "Apache-2.0",
+  "homepage": "https://github.com/Vivisector/ScalaDatabaseStreaming",
+  "moduleType": [],
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "^2.2.3",
+    "angular": "^1.5.4",
+    "angular-bootstrap": "^1.3.2",
+    "bootstrap-css-only": "^3.3.6"
+  }
+}
