@@ -1,8 +1,8 @@
 angular.module('app', [])
-    .controller('main', function ($scope, $http, $timeout) {
-        $scope.custCount = 5;
-        $scope.reviewCountMin = 5000;
-        $scope.reviewCountMax = 10000;
+    .controller('main', function ($scope, $http, $timeout, $q) {
+        $scope.custCount = 4;
+        $scope.reviewCountMin = 2000;
+        $scope.reviewCountMax = 5000;
         $scope.showLoadResults = false;
         $scope.customerIds = [];
 
@@ -10,6 +10,8 @@ angular.module('app', [])
 
             $scope.generateStatus = 'Working...';
             $scope.customerIds = [];
+            $scope.reviews = [];
+            $scope.showLoadResults = false;
 
             var request = $http({
                 method: 'POST',
@@ -32,21 +34,39 @@ angular.module('app', [])
             $scope.startTime = new Date().getTime();
             $scope.loadTime = 0;
             $scope.loadStatus = "Loading...";
-            $scope.reviews = null;
             $scope.showLoadResults = false;
+            $scope.reviews = [];
 
-            var request = $http({
-                method: 'GET',
-                url: '/rest/load',
-                params: {customerIds: $scope.customerIds}
-            });
-
-            request.then(function (response) {
-                $scope.reviews = response.data;
+            var loadAll = requestAllReviews($scope.customerIds);
+            loadAll.then(function () {
                 var endTime = new Date().getTime();
                 $scope.loadTime = endTime - $scope.startTime;
                 $scope.loadStatus = "Ok";
                 $scope.showLoadResults = true;
             });
+        };
+
+        function requestAllReviews(customerIds) {
+            var promises = [];
+            for (var i = 0; i < customerIds.length; i++) {
+                var id = customerIds[i];
+                var promise = $http({
+                    method: 'GET',
+                    url: '/rest/load',
+                    params: {customerId: id}
+                });
+                promise.success(function (response) {
+                    var customerReviews = response;
+                    $scope.reviews = $scope.reviews.concat(customerReviews);
+                })
+                promises.push(promise);
+            }
+            return $q.all(promises);
+        }
+
+        $scope.customerFilter = function (tableCustomerId) {
+            return function (tableReview) {
+                return tableReview.customerId == tableCustomerId ? true : false;
+            }
         };
     });

@@ -28,9 +28,6 @@
                 </div>
                 <br/>
                 <input type="submit" class="btn btn-info" value="Go"/>&nbsp;<label>{{generateStatus}}</label>
-
-                <!--<label for="min">Min</label>&nbsp;<label for="max">Max</label><br/>-->
-                <!--<input type="number" id="min" ng-model="reviewCountMin"/>&nbsp;<input type="number" id="max" ng-model="reviewCountMax"/>-->
                 <br/>
             </div>
         </form>
@@ -42,19 +39,24 @@
         <label ng-show="showLoadResults">{{loadStatus}}. Loaded {{reviews.length}} reviews. Took {{loadTime}} ms</label>
         <label ng-hide="showLoadResults">{{loadStatus}}</label>
     </div>
-    <div class="row">
+    <div class="row" ng-show="showLoadResults">
         <table class="table table-striped">
             <tr>
-                <th>Id</th>
-                <th>Customer Id</th>
-                <th>Rating</th>
-                <th>Review</th>
+                <th ng-repeat="id in customerIds">Customer [{{id}}]</th>
             </tr>
-            <tr ng-repeat="review in reviews">
-                <td>{{review.id}}</td>
-                <td>{{review.customerId}}</td>
-                <td>{{review.rating}}</td>
-                <td>{{review.reviewText}}</td>
+            <tr>
+                <td ng-repeat="id in customerIds">
+                    <table class="table table-striped">
+                        <tr>
+                            <td>Rating</td>
+                            <td>Review</td>
+                        </tr>
+                        <tr ng-repeat="tableReview in reviews | filter:customerFilter(id)">
+                            <td>{{tableReview.rating}}</td>
+                            <td style="font-size:xx-small">{{tableReview.reviewText}}</td>
+                        </tr>
+                    </table>
+                </td>
             </tr>
         </table>
     </div>
