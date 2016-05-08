@@ -35,7 +35,8 @@
     <h3>Load reviews</h3>
     <div>
         <label>Customers:</label>&nbsp;<label ng-repeat="cid in customerIds">{{cid}}, </label>
-        <button type="button" class="btn btn-primary" ng-click="load()">Load</button>
+        <button type="button" class="btn btn-primary" ng-click="loadJava()">Load J</button>
+        <button type="button" class="btn btn-success" ng-click="loadScala()">Load S</button>
         <label ng-show="showLoadResults">{{loadStatus}}. Loaded {{reviews.length}} reviews. Took {{loadTime}} ms</label>
         <label ng-hide="showLoadResults">{{loadStatus}}</label>
     </div>

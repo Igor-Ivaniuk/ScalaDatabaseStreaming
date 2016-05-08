@@ -19,7 +19,9 @@ package com.zpl.web;
 import com.zpl.model.GenerateRequest;
 import com.zpl.model.GenerateResponse;
 import com.zpl.model.ReviewDTO;
+import com.zpl.service.GenerateService;
 import com.zpl.service.ReviewService;
+import com.zpl.service_s.ReviewServiceS;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -33,18 +35,29 @@ public class Controller {
     @Autowired
     private ReviewService reviewService;
 
+    @Autowired
+    private ReviewServiceS reviewServiceS;
+
+    @Autowired
+    private GenerateService generateReviews;
+
     @RequestMapping(value = "/generate", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
     @ResponseBody
     public GenerateResponse generateReviews(@RequestBody final GenerateRequest request) {
-        return reviewService.generateReviews(request.getCustCount(),
+        return generateReviews.generateReviews(request.getCustCount(),
                 request.getReviewCountMin(),
                 request.getReviewCountMax());
     }
 
-    @RequestMapping(value = "/load", method = RequestMethod.GET, params = {"customerId"})
-    public List<ReviewDTO> loadReviews(@RequestParam(value = "customerId") final Integer customerId) {
-        return reviewService.loadReviews(customerId);
+    @RequestMapping(value = "/load", method = RequestMethod.GET, params = {"customerId", "useScala"})
+    public List<ReviewDTO> loadReviews(@RequestParam(value = "customerId") final Integer customerId,
+                                       @RequestParam(value = "useScala") final Boolean useScala) {
+        if (useScala) {
+            return reviewServiceS.loadReviews(customerId);
+        } else {
+            return reviewService.loadReviews(customerId);
+        }
     }
 
 }

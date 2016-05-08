@@ -1,4 +1,4 @@
-package com.zpl.model
+package com.zpl.model_s
 
 import slick.codegen.SourceCodeGenerator
 
@@ -12,7 +12,7 @@ object CodeGenerator extends App {
   val url = "jdbc:mysql://localhost/zpl";
   val jdbcDriver = "com.mysql.jdbc.Driver";
   val slickDriver = "slick.driver.MySQLDriver";
-  val pkg = "com.zpl.model";
+  val pkg = "com.zpl.model_s";
 
   SourceCodeGenerator.main(
     Array(slickDriver, jdbcDriver, url, outputDir, pkg, username, password)

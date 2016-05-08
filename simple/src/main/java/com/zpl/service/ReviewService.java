@@ -1,18 +1,38 @@
 package com.zpl.service;
 
-import com.zpl.model.GenerateResponse;
+import com.zpl.entity.Review;
 import com.zpl.model.ReviewDTO;
+import com.zpl.repository.ReviewRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by Igor Ivaniuk on 08.04.2016.
  */
 @Service
-public interface ReviewService {
+public class ReviewService {
 
-    GenerateResponse generateReviews(int customerCount, int reviewCountMin, int reviewCountMax);
+    @Autowired
+    private ReviewRepository reviewRepository;
 
-    List<ReviewDTO> loadReviews(int customerId);
+    public List<ReviewDTO> loadReviews(int customerId) {
+        List<Review> reviews = reviewRepository.findByCustomerId(customerId);
+        List<ReviewDTO> reviewDTOs = new ArrayList<ReviewDTO>();
+        for (Review review : reviews) {
+            reviewDTOs.add(toDto(review));
+        }
+        return reviewDTOs;
+    }
+
+    private ReviewDTO toDto(Review review) {
+        return ReviewDTO.builder()
+                .id(review.getId())
+                .customerId(review.getCustomerId())
+                .rating(review.getRating())
+                .reviewText(review.getReviewText())
+                .build();
+    }
 }

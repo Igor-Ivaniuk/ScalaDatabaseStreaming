@@ -30,14 +30,14 @@ angular.module('app', [])
             });
         };
 
-        $scope.load = function () {
+        function load(useScala) {
             $scope.startTime = new Date().getTime();
             $scope.loadTime = 0;
             $scope.loadStatus = "Loading...";
             $scope.showLoadResults = false;
             $scope.reviews = [];
 
-            var loadAll = requestAllReviews($scope.customerIds);
+            var loadAll = requestAllReviews($scope.customerIds, useScala);
             loadAll.then(function () {
                 var endTime = new Date().getTime();
                 $scope.loadTime = endTime - $scope.startTime;
@@ -46,14 +46,25 @@ angular.module('app', [])
             });
         };
 
-        function requestAllReviews(customerIds) {
+        $scope.loadJava = function () {
+            load(false)
+        }
+
+        $scope.loadScala = function () {
+            load(true)
+        }
+
+        function requestAllReviews(customerIds, useScala) {
             var promises = [];
             for (var i = 0; i < customerIds.length; i++) {
                 var id = customerIds[i];
                 var promise = $http({
                     method: 'GET',
                     url: '/rest/load',
-                    params: {customerId: id}
+                    params: {
+                        customerId: id,
+                        useScala: useScala
+                    }
                 });
                 promise.success(function (response) {
                     var customerReviews = response;
