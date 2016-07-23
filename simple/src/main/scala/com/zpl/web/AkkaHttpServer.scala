@@ -16,7 +16,7 @@ import com.zpl.model_s.ReviewDTOSJsonProtocol._
   */
 
 @Component
-class ReviewHttpServer @Autowired()(private val reviewService: ReviewServiceS) {
+class AkkaHttpServer @Autowired()(private val reviewService: ReviewServiceS) {
   implicit val actorSystem = ActorSystem("reviews")
   implicit val materializer = ActorMaterializer()
 
