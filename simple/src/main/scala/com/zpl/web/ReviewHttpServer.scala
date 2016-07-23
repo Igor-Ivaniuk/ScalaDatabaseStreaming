@@ -55,11 +55,6 @@ class ReviewHttpServer @Autowired()(private val reviewService: ReviewServiceS) {
   println(banner)
   Http().bindAndHandle(route, "localhost", 8081)
   println(s"Akka Server online at http://localhost:8081/")
-  //  def serve(): Unit = {
-  //    println(banner)
-  //    Http().bindAndHandle(route, "localhost", 8081)
-  //    println(s"Akka Server online at http://localhost:8081/")
-  //  }
 }
 
 
