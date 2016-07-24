@@ -1,8 +1,11 @@
 angular.module('app', [])
     .controller('main', function ($scope, $http, $timeout, $q) {
-        $scope.custCount = 4;
-        $scope.reviewCountMin = 2000;
-        $scope.reviewCountMax = 5000;
+
+        var jsonpipe = require('./jsonpipe');
+
+        $scope.custCount = 3;
+        $scope.reviewCountMin = 1000;
+        $scope.reviewCountMax = 2000;
         $scope.showLoadResults = false;
         $scope.customerIds = [];
 
@@ -52,6 +55,35 @@ angular.module('app', [])
 
         $scope.loadScala = function () {
             load(true)
+        }
+
+        $scope.loadScalaStream = function () {
+            $scope.startTime = new Date().getTime();
+            $scope.loadTime = 0;
+            $scope.loadStatus = "Loading...";
+            $scope.showLoadResults = true;
+            $scope.reviews = [];
+            for (var i = 0; i < $scope.customerIds.length; i++) {
+                var id = $scope.customerIds[i];
+                var url = 'http://localhost:8081/rest/loadStream?customerId=' + id
+                jsonpipe.flow(url, {
+                    "success": function (data) {
+                        //console.log("Chunk received")
+                        var reviews = $scope.reviews;
+                        reviews = reviews.concat(data)
+                        $scope.reviews = reviews;
+                        $scope.$applyAsync();
+                    },
+                    "timeout": 5000, // Number. Set a timeout (in milliseconds) for the request
+                    "method": "GET",
+                    "complete": function (statusText) {
+                        console.log("Chunked transfer complete with status: " + statusText)
+                        $scope.$applyAsync();
+                    },
+                });
+            }
+            $scope.loadStatus = "Ok";
+            //$scope.$applyAsync();
         }
 
         function requestAllReviews(customerIds, useScala) {

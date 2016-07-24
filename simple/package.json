@@ -21,6 +21,10 @@
     "grunt-contrib-uglify": "latest",
     "grunt-contrib-watch": "latest",
     "grunt-serve": "^0.1.6",
-    "jshint-stylish": "latest"
+    "jshint-stylish": "latest",
+    "browserify": "^9.0.3"
+  },
+  "dependencies": {
+    "angular": "~1.5.8"
   }
 }

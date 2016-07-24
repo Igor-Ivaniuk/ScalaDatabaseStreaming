@@ -35,8 +35,9 @@
     <h3>Load reviews</h3>
     <div>
         <label>Customers:</label>&nbsp;<label ng-repeat="cid in customerIds">{{cid}}, </label>
-        <button type="button" class="btn btn-primary" ng-click="loadJava()">Load J</button>
-        <button type="button" class="btn btn-success" ng-click="loadScala()">Load S</button>
+        <button type="button" class="btn btn-primary" ng-click="loadJava()">Load Java</button>
+        <button type="button" class="btn btn-success" ng-click="loadScala()">Load Scala</button>
+        <button type="button" class="btn btn-info" ng-click="loadScalaStream()">Load Scala Stream</button>
         <label ng-show="showLoadResults">{{loadStatus}}. Loaded {{reviews.length}} reviews. Took {{loadTime}} ms</label>
         <label ng-hide="showLoadResults">{{loadStatus}}</label>
     </div>
@@ -63,10 +64,6 @@
     </div>
 </div>
 <script type="text/javascript" src="./bower_components/angular/angular.min.js"></script>
-<script type="text/javascript" src="./bower_components/angular-resource/angular-resource.min.js"></script>
-<script type="text/javascript" src="./bower_components/lodash/dist/lodash.min.js"></script>
-<script src="js/scripts.js"></script>
-<!--<script src="http://localhost:9000/src/main/resources/static/js/scripts.js"></script>-->
-
+<script src="js/main.js"></script>
 </body>
 </html>
