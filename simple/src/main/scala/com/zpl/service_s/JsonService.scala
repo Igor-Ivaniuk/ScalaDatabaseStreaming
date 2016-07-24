@@ -12,16 +12,13 @@ class JsonService {
 
   def sourceToJsonSource[T](source: Source[T, NotUsed])(implicit writer: JsonWriter[T]): Source[ChunkStreamPart, NotUsed] = {
 
-    val commaSeparated: Source[ChunkStreamPart, NotUsed] =
+    val separated: Source[ChunkStreamPart, NotUsed] =
       source
         .map(t => Some(t.toJson.compactPrint))
         .scan[Option[ChunkStreamPart]](None)({
         case (None, Some(sourceElement)) => Some(ChunkStreamPart(sourceElement))
-        case (_, Some(sourceElement)) => Some(ChunkStreamPart(s", $sourceElement"))
+        case (_, Some(sourceElement)) => Some(ChunkStreamPart(s"\n\n$sourceElement"))
       }).mapConcat(_.toList)
-
-    Source.single(ChunkStreamPart("["))
-      .concat(commaSeparated)
-      .concat(Source.single(ChunkStreamPart("]")))
+    separated
   }
 }
