@@ -13,6 +13,6 @@ case class ReviewDTOS(
                      )
 
 object ReviewDTOSJsonProtocol extends DefaultJsonProtocol {
-  implicit val colorFormat = jsonFormat4(ReviewDTOS)
+  implicit val reviewFormat = jsonFormat4(ReviewDTOS)
 }
 
