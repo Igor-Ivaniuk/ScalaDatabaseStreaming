@@ -18,11 +18,9 @@ import org.springframework.stereotype.Component
   */
 
 @Component
-class AkkaHttpServer @Autowired()(private val reviewService: ReviewServiceS) {
+class AkkaHttpServer @Autowired()(private val reviewService: ReviewServiceS, private val jsonService: JsonService) {
   implicit val actorSystem = ActorSystem("reviews")
   implicit val materializer = ActorMaterializer()
-
-  val jsonService = new JsonService
 
   val route: Route = cors() {
     path("rest" / "loadStream") {
@@ -43,6 +41,7 @@ class AkkaHttpServer @Autowired()(private val reviewService: ReviewServiceS) {
       }
     }
   }
+
   val banner =
     s"""
        |....###....##....##.##....##....###.......##.....##.########.########.########.

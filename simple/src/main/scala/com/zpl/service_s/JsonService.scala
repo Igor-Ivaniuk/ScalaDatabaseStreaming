@@ -3,11 +3,13 @@ package com.zpl.service_s
 import akka.NotUsed
 import akka.http.scaladsl.model.HttpEntity.ChunkStreamPart
 import akka.stream.scaladsl.Source
+import org.springframework.stereotype.Component
 import spray.json._
 
 /**
   * Created by IgorIvaniuk on 23.07.2016.
   */
+@Component
 class JsonService {
 
   def sourceToJsonSource[T](source: Source[T, NotUsed])(implicit writer: JsonWriter[T]): Source[ChunkStreamPart, NotUsed] = {
@@ -19,6 +21,7 @@ class JsonService {
         case (None, Some(sourceElement)) => Some(ChunkStreamPart(sourceElement))
         case (_, Some(sourceElement)) => Some(ChunkStreamPart(s"\n\n$sourceElement"))
       }).mapConcat(_.toList)
+
     separated
   }
 }
