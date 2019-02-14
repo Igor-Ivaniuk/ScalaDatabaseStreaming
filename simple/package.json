@@ -13,7 +13,8 @@
   "author": "Igor Ivaniuk",
   "license": "Apache-2.0",
   "devDependencies": {
-    "bower": "^1.7.9",
+    "bower": "^1.8.8",
+    "browserify": "^9.0.3",
     "grunt": "^1.0.1",
     "grunt-contrib-cssmin": "latest",
     "grunt-contrib-jshint": "latest",
@@ -21,10 +22,10 @@
     "grunt-contrib-uglify": "latest",
     "grunt-contrib-watch": "latest",
     "grunt-serve": "^0.1.6",
-    "jshint-stylish": "latest",
-    "browserify": "^9.0.3"
+    "jshint-stylish": "latest"
   },
   "dependencies": {
-    "angular": "~1.5.8"
+    "angular": "~1.5.8",
+    "install": "^0.12.2"
   }
 }
