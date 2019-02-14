@@ -6,7 +6,7 @@ import akka.http.scaladsl.model.{HttpEntity, HttpResponse, MediaTypes}
 import akka.http.scaladsl.server.Directives._
 import akka.http.scaladsl.server.Route
 import akka.stream.ActorMaterializer
-import ch.megard.akka.http.cors.CorsDirectives._
+import ch.megard.akka.http.cors.scaladsl.CorsDirectives._
 import com.zpl.model_s.ReviewDTOSJsonProtocol._
 import com.zpl.service_s.{JsonService, ReviewServiceS}
 import org.springframework.beans.factory.annotation.Autowired
