@@ -298,7 +298,7 @@ angular.module('app', [])
                     }
                 });
                 promise.then(function (response) {
-                    var customerReviews = response;
+                    var customerReviews = response.data;
                     $scope.reviews = $scope.reviews.concat(customerReviews);
                 })
                 promises.push(promise);
