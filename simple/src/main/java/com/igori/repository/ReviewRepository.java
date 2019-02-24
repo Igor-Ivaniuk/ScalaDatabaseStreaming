@@ -1,6 +1,6 @@
-package com.zpl.repository;
+package com.igori.repository;
 
-import com.zpl.entity.Review;
+import com.igori.entity.Review;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

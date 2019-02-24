@@ -1,4 +1,4 @@
-package com.zpl.service_s
+package com.igori.service_s
 
 import org.springframework.beans.factory.DisposableBean
 import org.springframework.stereotype.Component

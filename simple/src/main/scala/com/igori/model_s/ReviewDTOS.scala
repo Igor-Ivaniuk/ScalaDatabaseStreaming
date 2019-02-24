@@ -1,4 +1,4 @@
-package com.zpl.model_s
+package com.igori.model_s
 
 import spray.json.DefaultJsonProtocol
 

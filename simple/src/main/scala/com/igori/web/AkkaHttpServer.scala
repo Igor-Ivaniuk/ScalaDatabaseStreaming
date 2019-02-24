@@ -1,4 +1,4 @@
-package com.zpl.web
+package com.igori.web
 
 import akka.actor.ActorSystem
 import akka.http.scaladsl.Http
@@ -7,8 +7,8 @@ import akka.http.scaladsl.server.Directives._
 import akka.http.scaladsl.server.Route
 import akka.stream.ActorMaterializer
 import ch.megard.akka.http.cors.scaladsl.CorsDirectives._
-import com.zpl.model_s.ReviewDTOSJsonProtocol._
-import com.zpl.service_s.{JsonService, ReviewServiceS}
+import com.igori.model_s.ReviewDTOSJsonProtocol._
+import com.igori.service_s.{JsonService, ReviewServiceS}
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Component
 

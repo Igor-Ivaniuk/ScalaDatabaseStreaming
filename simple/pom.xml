@@ -146,7 +146,7 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
-                    <mainClass>com.zpl.App</mainClass>
+                    <mainClass>com.igori.App</mainClass>
                 </configuration>
             </plugin>
             <plugin>

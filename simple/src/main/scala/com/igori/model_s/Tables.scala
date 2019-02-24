@@ -1,4 +1,4 @@
-package com.zpl.model_s
+package com.igori.model_s
 
 // AUTO-GENERATED Slick data model
 /** Stand-alone Slick data model for immediate use */

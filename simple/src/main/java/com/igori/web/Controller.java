@@ -14,14 +14,14 @@
  * limitations under the License.
  */
 
-package com.zpl.web;
+package com.igori.web;
 
-import com.zpl.model.GenerateRequest;
-import com.zpl.model.GenerateResponse;
-import com.zpl.model.ReviewDTO;
-import com.zpl.service.GenerateService;
-import com.zpl.service.ReviewService;
-import com.zpl.service_s.ReviewServiceS;
+import com.igori.model.GenerateRequest;
+import com.igori.model.GenerateResponse;
+import com.igori.model.ReviewDTO;
+import com.igori.service.GenerateService;
+import com.igori.service.ReviewService;
+import com.igori.service_s.ReviewServiceS;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;

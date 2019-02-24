@@ -1,4 +1,4 @@
-package com.zpl.model;
+package com.igori.model;
 
 import lombok.Builder;
 import lombok.Data;

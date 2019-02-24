@@ -1,8 +1,8 @@
-package com.zpl.service;
+package com.igori.service;
 
-import com.zpl.entity.Review;
-import com.zpl.model.ReviewDTO;
-import com.zpl.repository.ReviewRepository;
+import com.igori.entity.Review;
+import com.igori.model.ReviewDTO;
+import com.igori.repository.ReviewRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

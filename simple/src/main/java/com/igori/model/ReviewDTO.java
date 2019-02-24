@@ -1,4 +1,4 @@
-package com.zpl.model;
+package com.igori.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -53,7 +53,7 @@ public class ReviewDTO {
         }
 
         public String toString() {
-            return "com.zpl.model.ReviewDTO.ReviewDTOBuilder(id=" + this.id + ", customerId=" + this.customerId + ", rating=" + this.rating + ", reviewText=" + this.reviewText + ")";
+            return "com.igori.model.ReviewDTO.ReviewDTOBuilder(id=" + this.id + ", customerId=" + this.customerId + ", rating=" + this.rating + ", reviewText=" + this.reviewText + ")";
         }
     }
 }

@@ -1,12 +1,12 @@
-package com.zpl.service_s
+package com.igori.service_s
 
 import java.util
 
 import akka.NotUsed
 import akka.stream.scaladsl._
-import com.zpl.model.ReviewDTO
-import com.zpl.model_s.ReviewDTOS
-import com.zpl.model_s.Tables.{Review, ReviewRow}
+import com.igori.model.ReviewDTO
+import com.igori.model_s.ReviewDTOS
+import com.igori.model_s.Tables.{Review, ReviewRow}
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Component
 import slick.driver.MySQLDriver.api._

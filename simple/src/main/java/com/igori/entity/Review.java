@@ -1,4 +1,4 @@
-package com.zpl.entity;
+package com.igori.entity;
 
 import lombok.Data;
 

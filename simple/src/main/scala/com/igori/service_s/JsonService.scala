@@ -1,4 +1,4 @@
-package com.zpl.service_s
+package com.igori.service_s
 
 import akka.NotUsed
 import akka.http.scaladsl.model.HttpEntity.ChunkStreamPart

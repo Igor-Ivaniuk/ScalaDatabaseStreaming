@@ -230,10 +230,10 @@ angular.module('app', [])
                 }
             });
 
-            request.success(function (response) {
-                $scope.generateCount = response.totalCount;
+            request.then(function (response) {
+                $scope.generateCount = response.data.totalCount;
                 $scope.generateStatus = "Ok. Generated " + $scope.generateCount + " reviews.";
-                $scope.customerIds = response.customerIds;
+                $scope.customerIds = response.data.customerIds;
             });
         };
 
@@ -302,7 +302,7 @@ angular.module('app', [])
                         useScala: useScala
                     }
                 });
-                promise.success(function (response) {
+                promise.then(function (response) {
                     var customerReviews = response;
                     $scope.reviews = $scope.reviews.concat(customerReviews);
                 })
