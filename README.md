@@ -36,6 +36,9 @@ mvn spring-boot:run
 ```
 
 #Links
+
+Slides: [https://docs.google.com/presentation/d/1GUly63HEMIa5gYC9CQ-ejIVqlimlmA6IHKVbBXyQN74/edit?usp=sharing]
+
 Reactive Streams initiative: [http://www.reactive-streams.org/]
 Akka Streams: [https://doc.akka.io/docs/akka/2.5/stream/]
 Slick: [http://slick.lightbend.com/docs/]

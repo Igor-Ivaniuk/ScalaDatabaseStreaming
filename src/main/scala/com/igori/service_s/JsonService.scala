@@ -16,7 +16,7 @@ class JsonService {
         .map(t => Some(t.toJson.compactPrint))
         .scan[Option[ChunkStreamPart]](None)({
         case (None, Some(sourceElement)) => Some(ChunkStreamPart(sourceElement))
-        case (_, Some(sourceElement)) => Some(ChunkStreamPart(s"\n\n$sourceElement"))
+        case (_, Some(sourceElement)) => Some(ChunkStreamPart(s"#####$sourceElement"))
       }).mapConcat(_.toList)
 
     separated
