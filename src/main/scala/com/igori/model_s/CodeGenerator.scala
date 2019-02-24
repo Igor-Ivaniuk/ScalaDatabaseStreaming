@@ -7,7 +7,7 @@ object CodeGenerator extends App {
   val user = "user"
   val password = "user"
   val url = "jdbc:mysql://localhost:3306/sds?useSSL=false"
-  val jdbcDriver = "com.mysql.jdbc.Driver"
+  val jdbcDriver = "com.mysql.cj.jdbc.Driver"
   val profile = "slick.jdbc.MySQLProfile"
   val slickDriver = "slick.driver.MySQLDriver"
   val pkg = "com.igori.model_s"

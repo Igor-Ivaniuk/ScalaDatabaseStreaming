@@ -1,11 +1,14 @@
 version: '3.7'
 services:
-  app:
-    build: .
-    depends_on:
-      - mysql
-    restart: always
-  mysql:
+#  sds-app:
+#    build: .
+#    ports:
+#      - 8080:8080
+#      - 8081:8081
+#    depends_on:
+#      - sds-mysql
+#    restart: always
+  sds-mysql:
     image: mysql:5.7.23
     environment:
       MYSQL_ROOT_PASSWORD: root
@@ -14,6 +17,4 @@ services:
       MYSQL_DATABASE: sds
     ports:
       - 3306:3306
-    #    volumes:
-    #      - ../data/keycloak:/var/lib/mysql
     restart: always
