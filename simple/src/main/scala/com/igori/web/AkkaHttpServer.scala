@@ -12,11 +12,6 @@ import com.igori.service_s.{JsonService, ReviewServiceS}
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Component
 
-
-/**
-  * Created by IgorIvaniuk on 23.07.2016.
-  */
-
 @Component
 class AkkaHttpServer @Autowired()(private val reviewService: ReviewServiceS, private val jsonService: JsonService) {
   implicit val actorSystem = ActorSystem("reviews")

@@ -6,7 +6,7 @@ services:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_USER: user
       MYSQL_PASSWORD: user
-      MYSQL_DATABASE: simple
+      MYSQL_DATABASE: sds
     ports:
       - 3306:3306
 #    volumes:

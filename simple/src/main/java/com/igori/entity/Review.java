@@ -7,9 +7,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
-/**
- * Created by IgorIvaniuk on 07.04.2016.
- */
 @Entity
 @Data
 public class Review {

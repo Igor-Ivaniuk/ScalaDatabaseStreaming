@@ -9,9 +9,6 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by Igor Ivaniuk on 08.04.2016.
- */
 @Service
 public class ReviewService {
 

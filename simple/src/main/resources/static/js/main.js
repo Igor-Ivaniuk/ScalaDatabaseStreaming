@@ -136,11 +136,6 @@ function send(url, options) {
             isChunked = encoding.indexOf('chunked') > -1 ||
                         encoding.indexOf('identity') > -1; // fix for Safari
             if (!isChunked) {
-                // SPDY inherently uses chunked transfer and does not define a header.
-                // Firefox provides a synthetic header which can be used instead.
-                // For Chrome, a non-standard JS function must be used to determine if
-                // the primary document was loaded with SPDY.  If the primary document
-                // was loaded with SPDY, then most likely the XHR will be as well.
                 chromeObj = window.chrome;
                 loadTimes = chromeObj && chromeObj.loadTimes && chromeObj.loadTimes();
                 chromeSpdy = loadTimes && loadTimes.wasFetchedViaSpdy;

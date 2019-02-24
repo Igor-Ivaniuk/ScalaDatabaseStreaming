@@ -10,9 +10,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-/**
- * Created by IgorIvaniuk on 08.05.2016.
- */
 @Service
 public class GenerateService {
 

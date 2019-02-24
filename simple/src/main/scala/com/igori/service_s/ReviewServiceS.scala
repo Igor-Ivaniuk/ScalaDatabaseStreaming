@@ -16,9 +16,6 @@ import scala.collection.JavaConverters._
 import scala.concurrent.duration._
 import scala.concurrent.{Await, Future}
 
-/**
-  * Created by IgorIvaniuk on 08.05.2016.
-  */
 @Component
 class ReviewServiceS @Autowired()(private val dbHolder: DbHolder) {
 

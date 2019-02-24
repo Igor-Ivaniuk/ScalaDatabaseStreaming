@@ -2,9 +2,6 @@ package com.igori.model_s
 
 import slick.codegen.SourceCodeGenerator
 
-/**
-  * Created by IgorIvaniuk on 20.04.2016.
-  */
 object CodeGenerator extends App {
   val outputDir = ".//src/main/scala";
   val username = "user";

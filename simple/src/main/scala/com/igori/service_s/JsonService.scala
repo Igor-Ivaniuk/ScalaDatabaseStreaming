@@ -6,9 +6,6 @@ import akka.stream.scaladsl.Source
 import org.springframework.stereotype.Component
 import spray.json._
 
-/**
-  * Created by IgorIvaniuk on 23.07.2016.
-  */
 @Component
 class JsonService {
 
