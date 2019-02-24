@@ -5,8 +5,8 @@ import lombok.Data;
 @Data
 public class GenerateRequest {
 
-    private Integer custCount;
-    private Integer reviewCountMin;
-    private Integer reviewCountMax;
+  private Integer custCount;
+  private Integer reviewCountMin;
+  private Integer reviewCountMax;
 
 }

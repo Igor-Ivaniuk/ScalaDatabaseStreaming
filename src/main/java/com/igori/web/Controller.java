@@ -22,42 +22,47 @@ import com.igori.model.ReviewDTO;
 import com.igori.service.GenerateService;
 import com.igori.service.ReviewService;
 import com.igori.service_s.ReviewServiceS;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/rest")
 public class Controller {
 
-    @Autowired
-    private ReviewService reviewService;
+  @Autowired
+  private ReviewService reviewService;
 
-    @Autowired
-    private ReviewServiceS reviewServiceS;
+  @Autowired
+  private ReviewServiceS reviewServiceS;
 
-    @Autowired
-    private GenerateService generateReviews;
+  @Autowired
+  private GenerateService generateReviews;
 
-    @RequestMapping(value = "/generate", method = RequestMethod.POST)
-    @ResponseStatus(HttpStatus.CREATED)
-    @ResponseBody
-    public GenerateResponse generateReviews(@RequestBody final GenerateRequest request) {
-        return generateReviews.generateReviews(request.getCustCount(),
-                request.getReviewCountMin(),
-                request.getReviewCountMax());
+  @RequestMapping(value = "/generate", method = RequestMethod.POST)
+  @ResponseStatus(HttpStatus.CREATED)
+  @ResponseBody
+  public GenerateResponse generateReviews(@RequestBody final GenerateRequest request) {
+    return generateReviews.generateReviews(request.getCustCount(),
+        request.getReviewCountMin(),
+        request.getReviewCountMax());
+  }
+
+  @RequestMapping(value = "/load", method = RequestMethod.GET, params = {"customerId", "useScala"})
+  public List<ReviewDTO> loadReviews(@RequestParam(value = "customerId") final Integer customerId,
+      @RequestParam(value = "useScala") final Boolean useScala) {
+    if (useScala) {
+      return reviewServiceS.loadReviews(customerId);
+    } else {
+      return reviewService.loadReviews(customerId);
     }
-
-    @RequestMapping(value = "/load", method = RequestMethod.GET, params = {"customerId", "useScala"})
-    public List<ReviewDTO> loadReviews(@RequestParam(value = "customerId") final Integer customerId,
-                                       @RequestParam(value = "useScala") final Boolean useScala) {
-        if (useScala) {
-            return reviewServiceS.loadReviews(customerId);
-        } else {
-            return reviewService.loadReviews(customerId);
-        }
-    }
+  }
 
 }
